@@ -1,4 +1,4 @@
-//! Converts between newline formats (`\n`, `\r`, and `\r\n`).
+//! Normalizes text into Unix (\n) or DOS (\r\n) newline formats, using fast SIMD search and zero-copy when possible.
 //!
 //! Optimized for speed and minimal allocations. Returns a `Cow<str>` to avoid copies
 //! when no change is needed.
