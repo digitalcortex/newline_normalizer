@@ -227,6 +227,22 @@ mod tests {
         }
 
         #[test]
+        fn handles_cr_at_start() {
+            assert_eq!(
+                "\rЭто пример параграфа с пробелами и юникодом.".to_unix_newlines(),
+                "\nЭто пример параграфа с пробелами и юникодом."
+            );
+        }
+
+        #[test]
+        fn handles_crlf_at_start() {
+            assert_eq!(
+                "\r\nЭто пример параграфа с пробелами и юникодом.".to_unix_newlines(),
+                "\nЭто пример параграфа с пробелами и юникодом."
+            );
+        }
+
+        #[test]
         fn trailing_carriage_return_only() {
             let input = "line1\rline2\r";
             let expected = "line1\nline2\n";
