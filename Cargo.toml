@@ -1,7 +1,7 @@
 [package]
 name = "newline_normalizer"
 description = "Zero-copy newline normalization to \\n or \\r\\n with SIMD acceleration."
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Nikita Madebeykin"]
 edition = "2021"
 license = "MIT"
@@ -19,6 +19,8 @@ memchr = "2.7.4"
 criterion = "0.5.1"
 loe = "0.3.0"
 newline-converter = "0.3.0"
+once_cell = "1.20.3"
+regex = "1.9.6"
 
 [[bench]]
 name = "to_unix"

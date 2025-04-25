@@ -37,6 +37,8 @@ All suggestions on how to improve the benchmarks are welcome.
 ### 📈 Results
 
 Hardware: AMD Ryzen 9 9900X 12-Core Processor with 64 GB RAM.
+Rust version: rustc 1.86.0 (05f9846f8 2025-03-31)
+Benchmark framework: Criterion
 
 #### Normalizing to DOS newlines (`\r\n`):
 
@@ -51,12 +53,12 @@ Note: Pre-normalized means the input already has correct line endings and does n
 
 #### Normalizing to Unix newlines (`\n`):
 
-| Case | `newline-converter` | `std` replace chain | This crate (`newline_normalizer`) |
+| Case | `newline-converter` | `regex` replace all | This crate (`newline_normalizer`) |
 | ---- | ----------------- | ----------------- | --------------------------------|
-Small Unicode paragraph | ~1.1009 µs | ~140.72 ns | ~24.464 ns 🚀 | 
-Small Unicode paragraph pre-normalized | ~203.24 ns | ~109.17 ns | ~4.6608 ns 🚀
-The Adventures of Sherlock Holmes (608kb) | ~779.06 µs | ~213.23 µs | ~89.150 µs 🚀
-The Adventures of Sherlock Holmes (608kb) pre-normalized | ~365.45 µs | ~137.74 µs | ~2.7538 µs 🚀
+Small Unicode paragraph | ~1.0858 µs | ~101.42 ns | ~24.464 ns 🚀 | 
+Small Unicode paragraph pre-normalized | ~164.41 ns | ~20.744 ns | ~4.6608 ns 🚀
+The Adventures of Sherlock Holmes (608kb) | ~680.12 µs | ~289.84 µs | ~89.150 µs 🚀
+The Adventures of Sherlock Holmes (608kb) pre-normalized | ~318.83 µs | ~7.7864 µs | ~2.5146 µs 🚀
 
 #### Benchmark result notes
 

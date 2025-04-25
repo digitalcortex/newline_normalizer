@@ -1,5 +1,9 @@
 use criterion::{criterion_group, criterion_main, Criterion, black_box};
 use newline_normalizer::{ToDosNewlines, ToUnixNewlines};
+use once_cell::sync::Lazy;
+use regex::Regex;
+
+static UNIX_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\r\n?").unwrap());
 
 fn bench_to_unix_newlines(c: &mut Criterion) {
     let input = "
@@ -19,20 +23,20 @@ fn bench_to_unix_newlines(c: &mut Criterion) {
     assert_eq!(large_input.to_unix_newlines(), newline_converter::dos2unix(&large_input));
     
 
-    c.bench_function("std lib: chained replace", |b| {
-        b.iter(|| str::replace(black_box(&input), "\r\n", "\n").replace("\r", "\n"))
+    c.bench_function("regex", |b| {
+        b.iter(|| UNIX_REGEX.replace_all(black_box(&input), "\n"))
     });
 
-    c.bench_function("std lib: chained replace with pre-normalized text", |b| {
-        b.iter(|| str::replace(black_box(&pre_normalized_input), "\r\n", "\n").replace("\r", "\n"))
+    c.bench_function("regex with pre-normalized text", |b| {
+        b.iter(|| UNIX_REGEX.replace_all(black_box(&pre_normalized_input), "\n"))
     });
 
-    c.bench_function("std lib: chained replace with large ASCII text", |b| {
-        b.iter(|| str::replace(black_box(&large_input), "\r\n", "\n").replace("\r", "\n"))
+    c.bench_function("regex with large ASCII text", |b| {
+        b.iter(|| UNIX_REGEX.replace_all(black_box(&large_input), "\n"))
     });
 
-    c.bench_function("std lib: chained replace with large pre-normalized ASCII text", |b| {
-        b.iter(|| str::replace(black_box(&pre_normalized_large_input), "\r\n", "\n").replace("\r", "\n"))
+    c.bench_function("regex with large pre-normalized ASCII text", |b| {
+        b.iter(|| UNIX_REGEX.replace_all(black_box(&pre_normalized_large_input), "\n"))
     });
 
 
