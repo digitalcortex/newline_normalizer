@@ -1,6 +1,6 @@
 # 🧹 newline-normalizer 🧹
 
-Rust crate for normalizing text to the Unix (`\n`) or Dos (`\r\n`) newline formats using fast SIMD search and zero-copy where possible.
+Rust crate for normalizing text into Unix (`\n`) or DOS (`\r\n`) newline formats, using fast SIMD search and zero-copy when possible.
 
 ## ✨ Features
 
