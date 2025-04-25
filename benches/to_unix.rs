@@ -20,6 +20,10 @@ fn bench_to_unix_newlines(c: &mut Criterion) {
     c.bench_function("3rd party crate \"newline-converter\": dos2unix()", |b| {
         b.iter(|| newline_converter::dos2unix(black_box(&input)))
     });
+
+    c.bench_function("3rd party crate \"newline-converter\": dos2unix() with pre-normalized text", |b| {
+        b.iter(|| newline_converter::dos2unix(black_box(&pre_normalized_input)))
+    });
     
     c.bench_function("this crate: to_unix_newlines()", |b| {
         let input_slice = input.as_str();
