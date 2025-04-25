@@ -28,7 +28,7 @@ pub trait ToUnixNewlines {
 /// Converts any mix of LF (`\n`) and CR (`\r`) newlines to CRLF (`\r\n`).
 ///
 /// - Leaves input untouched if all newlines are already CRLF.
-/// - Does not affect Unicode content. Grapheme clusters, RTL markers, and emoji remain intact.
+/// - Unicode is preserved as-is. Grapheme clusters, RTL markers, and emoji remain intact.
 ///
 /// Example:
 /// ```
