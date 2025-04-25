@@ -1,7 +1,7 @@
 [package]
 name = "newline_normalizer"
 description = "Efficient newline normalization for Unix (`\\n`) and DOS (`\\r\\n`) text formats."
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Nikita Madebeykin"]
 edition = "2021"
 license = "MIT"
