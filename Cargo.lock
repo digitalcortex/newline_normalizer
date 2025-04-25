@@ -313,7 +313,7 @@ dependencies = [
 
 [[package]]
 name = "newline_normalizer"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "criterion",
  "loe",
