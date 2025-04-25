@@ -5,7 +5,7 @@
 
 /// Converts any mix of CRLF (`\r\n`) and CR (`\r`) newlines to LF (`\n`).
 ///
-/// - Leaves input untouched if no carriage return is found.
+/// - Returns input untouched if no carriage return is found.
 /// - Unicode is preserved as-is. Grapheme clusters, RTL markers, and emoji remain intact.
 ///
 /// Example:
@@ -25,7 +25,7 @@ pub trait ToUnixNewlines {
 
 /// Converts any mix of LF (`\n`) and CR (`\r`) newlines to CRLF (`\r\n`).
 ///
-/// - Leaves input untouched if all newlines are already CRLF.
+/// - Returns input untouched if all newlines are already CRLF.
 /// - Unicode is preserved as-is. Grapheme clusters, RTL markers, and emoji remain intact.
 ///
 /// Example:
