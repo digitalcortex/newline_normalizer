@@ -1,9 +1,7 @@
-//! Normalizes text into Unix (\n) or DOS (\r\n) newline formats, using fast SIMD search and zero-copy when possible.
+//! Normalizes text into Unix (`\n`) or DOS (`\r\n`) newline formats, using fast SIMD search and zero-copy when possible.
 //!
 //! Optimized for speed and minimal allocations. Returns a `Cow<str>` to avoid copies
 //! when no change is needed.
-//!
-//! Supports both Unix (`\n`) and DOS (`\r\n`) style normalization.
 
 /// Converts any mix of CRLF (`\r\n`) and CR (`\r`) newlines to LF (`\n`).
 ///
