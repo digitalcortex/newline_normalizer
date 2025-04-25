@@ -36,7 +36,7 @@ fn bench_to_unix_newlines(c: &mut Criterion) {
     });
 
     c.bench_function("3rd-party crate \"newline-converter\": unix2dos() for large input with pre-normalized text", |b| {
-        let input_slice = large_input.as_str();
+        let input_slice = pre_normalized_large_input.as_str();
         b.iter(|| newline_converter::unix2dos(black_box(input_slice)))
     });
     
