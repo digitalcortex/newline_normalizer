@@ -4,11 +4,11 @@ Rust crate for normalizing text into Unix (`\n`) or DOS (`\r\n`) newline formats
 
 ## ✨ Features
 
-- Adds extension traits to `str` — call `.to_unix_newlines()` and `.to_dos_newlines()` naturally.
-- Preserves input with `Cow<str>` — avoids allocating when input is already normalized.
-- Converts all common newline formats (`\n`, `\r`, `\r\n`) including classic Mac line endings.
-- Unicode-safe — preserves emojis, RTL, combining marks, and other sequences.
-- Fast scanning using [memchr](https://github.com/BurntSushi/memchr) utilizing SIMD for efficient large text processing.
+- Adds extension traits to `str` — call `.to_unix_newlines()` and `.to_dos_newlines()` directly.
+- Preserves input with `Cow<str>` — skips allocation if no changes are needed.
+- Converts `\r` and `\r\n` into consistent Unix (`\n`) or DOS (`\r\n`) newlines.
+- Unicode-safe — preserves all characters without loss.
+- Fast scanning with [memchr](https://github.com/BurntSushi/memchr) and SIMD.
 
 ## 📚 Examples
 
@@ -24,7 +24,7 @@ assert_eq!(dos, "line1\r\nline2\r\nline3");
 
 ## 🚀 Benchmark
 
-Benchmarks are located under the `/benches` folder.
+Benchmarks are in the `/benches` folder.
 
 Run them using:
 ```
@@ -77,3 +77,7 @@ All valid UTF-8 sequences are preserved, including:
 ## ⚠️ Limitations
 
 This crate does not currently normalize U+2028 (LINE SEPARATOR) or U+2029 (PARA SEP). Only ASCII newline formats are converted.
+
+## 📝 Licensed under MIT
+
+This project is licensed under the MIT License.
