@@ -1,6 +1,6 @@
 [package]
 name = "newline_normalizer"
-description = "Convert between \\n, \\r and \\r\\n newline formats using zero-copy where possible."
+description = "Efficient newline normalization for Unix (`\\n`) and DOS (`\\r\\n`) text formats."
 version = "0.1.0"
 authors = ["Nikita Madebeykin"]
 edition = "2021"
