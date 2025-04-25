@@ -1,6 +1,9 @@
 # 🧹 newline_normalizer 🧹
 
-Rust crate for normalizing text into Unix (`\n`) or DOS (`\r\n`) newline formats, using fast SIMD search and zero-copy when possible.
+The library for normalizing text into Unix (`\n`) or DOS (`\r\n`) newline formats, using fast SIMD search and zero-copy when possible.
+
+[![crates.io](https://img.shields.io/crates/v/newline_normalizer.svg?color=blue)](https://crates.io/crates/newline_normalizer)
+
 
 ## ✨ Features
 
