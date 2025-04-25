@@ -1,7 +1,7 @@
 [package]
 name = "newline_normalizer"
 description = "Zero-copy newline normalization to \\n or \\r\\n with SIMD acceleration."
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Nikita Madebeykin"]
 edition = "2021"
 license = "MIT"
