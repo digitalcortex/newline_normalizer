@@ -1,0 +1,29 @@
+[package]
+name = "newline_normalizer"
+description = "Convert between \\n, \\r and \\r\\n newline formats using zero-copy where possible."
+version = "0.1.0"
+authors = ["Nikita Madebeykin"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/digitalcortex/newline_normalizer"
+rust-version = "1.61"
+keywords = ["newline", "normalize", "unix", "windows", "text"]
+categories = ["text-processing"]
+exclude = ["/benches"]
+readme = "README.md"
+
+[dependencies]
+memchr = "2.7.4"
+
+[dev-dependencies]
+criterion = "0.5.1"
+loe = "0.3.0"
+newline-converter = "0.3.0"
+
+[[bench]]
+name = "to_unix"
+harness = false
+
+[[bench]]
+name = "to_dos"
+harness = false
