@@ -5,10 +5,6 @@
 //!
 //! Supports both Unix (`\n`) and DOS (`\r\n`) style normalization.
 
-use std::{borrow::Cow, usize};
-
-use memchr::{memchr2_iter, memchr_iter};
-
 /// Converts any mix of CRLF (`\r\n`) and CR (`\r`) newlines to LF (`\n`).
 ///
 /// - Leaves input untouched if no carriage return is found.
@@ -26,7 +22,7 @@ pub trait ToUnixNewlines {
     /// Normalize all line breaks in the input to LF (`\n`).
     ///
     /// Returns a borrowed reference if no transformation is needed.
-    fn to_unix_newlines(&self) -> Cow<str>;
+    fn to_unix_newlines(&self) -> std::borrow::Cow<str>;
 }
 
 /// Converts any mix of LF (`\n`) and CR (`\r`) newlines to CRLF (`\r\n`).
@@ -46,18 +42,18 @@ pub trait ToDosNewlines {
     /// Normalize all line breaks in the input to CRLF (`\r\n`).
     ///
     /// Returns a borrowed reference if no transformation is needed.
-    fn to_dos_newlines(&self) -> Cow<str>;
+    fn to_dos_newlines(&self) -> std::borrow::Cow<str>;
 }
 
 impl ToUnixNewlines for str {
-    fn to_unix_newlines(&self) -> Cow<str> {
+    fn to_unix_newlines(&self) -> std::borrow::Cow<str> {
         let slice = self.as_bytes();
         let len = slice.len();
         let end_index = len.saturating_sub(1);
-        let mut iter = memchr_iter(b'\r', slice);
+        let mut iter = memchr::memchr_iter(b'\r', slice);
 
         let Some(mut cr) = iter.next() else {
-            return Cow::Borrowed(self);
+            return std::borrow::Cow::Borrowed(self);
         };
 
         let mut out = Vec::with_capacity(len);
@@ -82,16 +78,16 @@ impl ToUnixNewlines for str {
             out.extend_from_slice(&slice[pos..]);
         }
 
-        Cow::Owned(unsafe { String::from_utf8_unchecked(out) })
+        std::borrow::Cow::Owned(unsafe { String::from_utf8_unchecked(out) })
     }
 }
 
 impl ToDosNewlines for str {
-    fn to_dos_newlines(&self) -> Cow<str> {
+    fn to_dos_newlines(&self) -> std::borrow::Cow<str> {
         let slice = self.as_bytes();
         let len = slice.len();
         let end_index = len.saturating_sub(1);
-        let mut iter = memchr2_iter(b'\n', b'\r', slice);
+        let mut iter = memchr::memchr2_iter(b'\n', b'\r', slice);
 
         // Skip all properly formatted CRLF pairs
         let mut crlf = usize::MAX;
@@ -105,7 +101,7 @@ impl ToDosNewlines for str {
         }
 
         if crlf == usize::MAX {
-            return Cow::Borrowed(self);
+            return std::borrow::Cow::Borrowed(self);
         }
 
         let mut out = Vec::with_capacity(len);
@@ -134,7 +130,7 @@ impl ToDosNewlines for str {
             out.extend_from_slice(&slice[pos..]);
         }
 
-        Cow::Owned(unsafe { String::from_utf8_unchecked(out) })
+        std::borrow::Cow::Owned(unsafe { String::from_utf8_unchecked(out) })
     }
 }
 
