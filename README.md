@@ -1,4 +1,4 @@
-# 🧹 newline-normalizer 🧹
+# 🧹 newline_normalizer 🧹
 
 Rust crate for normalizing text into Unix (`\n`) or DOS (`\r\n`) newline formats, using fast SIMD search and zero-copy when possible.
 
