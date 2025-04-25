@@ -4,10 +4,21 @@ Convert between newline formats (`\n`, `\r`, `\r\n`) safely and efficiently.
 
 ## Features
 
+- Adds extension traits to `str` — call `.to_unix_newlines()` and `.to_dos_newlines()` naturally.
 - Preserves input with `Cow<str>` — avoids allocating when input is already normalized.
-- Converts all valid forms of newlines (Unix, DOS, or classic Mac).
+- Converts all common newline formats (`\n`, `\r`, `\r\n`) including classic Mac line endings.
 - Unicode-safe — preserves emojis, RTL, combining marks, and other sequences.
-- Fast scanning using `memchr`.
+- Fast scanning using [memchr](https://github.com/BurntSushi/memchr) utilizing SIMD for efficient large text processing.
+
+## Benchmark
+
+Benchmarks are located under the `/benches` folder.
+
+Run them using:
+```
+cargo bench --bench to_unix
+cargo bench --bench to_dos
+```
 
 ## Examples
 
