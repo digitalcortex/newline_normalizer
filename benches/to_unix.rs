@@ -15,12 +15,14 @@ fn bench_to_unix_newlines(c: &mut Criterion) {
             مرحبا بك في عالم الترميز الموحد.
     ".to_string();
     let pre_normalized_input = input.to_unix_newlines().to_string();
+    assert_eq!(input.to_unix_newlines(), UNIX_REGEX.replace_all(&input, "\n"));
     assert_eq!(input.to_unix_newlines(), newline_converter::dos2unix(&input));
 
     let large_input = include_str!("./files/sherlock.txt").to_dos_newlines().to_string(); // input text has all new lines in Unix format, so we have to convert it to DOS format first for the sake of the benchmark
     let pre_normalized_large_input = large_input.to_unix_newlines().to_string();
 
     assert_eq!(large_input.to_unix_newlines(), newline_converter::dos2unix(&large_input));
+    assert_eq!(large_input.to_unix_newlines(), UNIX_REGEX.replace_all(&large_input, "\n"));
     
 
     c.bench_function("regex", |b| {
