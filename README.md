@@ -37,7 +37,9 @@ All suggestions on how to improve the benchmarks are welcome.
 ### 📈 Results
 
 Hardware: AMD Ryzen 9 9900X 12-Core Processor with 64 GB RAM.
+
 Rust version: rustc 1.86.0 (05f9846f8 2025-03-31)
+
 Benchmark framework: Criterion
 
 #### Normalizing to DOS newlines (`\r\n`):
